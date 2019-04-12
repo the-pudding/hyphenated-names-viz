@@ -1,0 +1,23 @@
+<section class='vignettes'>
+	{{#each doc.vignettes}}
+	<div class='athlete' id='{{lastName}}'>
+		<div class='name-container'>
+			<div class='name-container__left'>
+				<p class='lastName lastName__left'>{{lastNameLeft}}</p>
+			</div>
+			<div class='name-container__right'>
+				<p class='lastName lastName__right'>{{lastNameRight}}</p>
+			</div>
+		</div>
+		<div class='deets-container'>
+			<div class='deets-container__text'>
+				<p><span>Full name: </span>{{fullName}}</p>
+				<p><span>League: </span>{{league}}</p>
+				<p><span>Position: </span>{{position}}</p>
+				<p><span>Dates: </span>{{startYear}}—{{endYear}}</p>
+				<p>{{text}}</p>
+			</div>
+		</div>
+	</div>
+	{{/each}}
+</section>
