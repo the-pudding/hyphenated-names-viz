@@ -1,20 +1,48 @@
 .heatmap
 	width 100%
-	margin 0 auto
+	margin 0 auto 2rem auto
 	max-width $column-width
 	padding 0 1rem
 
 	figure
 		width 100%
 
-		.g-vis
+		.g-vis, .g-labels
 			display flex
 
-		.decade
-			width 14%
+		.decade, .decadeLabel
+			width 12.5%
+
+			.league
+				height 2.5rem
+				//border-bottom 1px solid $gray-light
+				//border-left 1px solid $gray-light
 
 			p
 				font-family $national
 				set-type-size('root', true)
 				margin 0
 				padding 0.5rem 1rem
+				text-align center
+
+		.decadeLabel p
+			font-weight 600
+
+		.g-labels
+			padding-left 12.5%
+			width calc(100% + 12.5%)
+
+		.leagueLabels
+			width 12.5%
+
+		.leagueBlocks
+			height 2.5rem
+			//border-bottom 1px solid $gray-light
+
+			p
+				font-family $national
+				set-type-size('root', true)
+				margin 0
+				padding 0.5rem 0
+				font-weight 600
+				text-transform uppercase

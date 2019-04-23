@@ -23,6 +23,7 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 		const scaleX = null;
 		const scaleY = null;
 		const colorScale = d3.scaleLinear().domain([0,6]).range(['#ffffff', '#FC5F1A'])
+		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
 
 		// dom elements
 		let $heatMapContainer = null;
@@ -37,7 +38,32 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 
 				console.log(data)
 				// setup viz group
+				$labels = $heatMapContainer.append('div').attr('class', 'g-labels');
 				$vis = $heatMapContainer.append('div').attr('class', 'g-vis');
+
+				const decadeLabels = $labels
+					.selectAll('.decadeLabel')
+					.data(data)
+					.enter()
+					.append('div')
+					.attr('class', d => `decadeLabel decadeLabel-${d.key}`)
+
+				const decadeLabelText = decadeLabels
+					.append('p')
+					.text(d => d.key)
+
+				const leagueLabels = $vis.append('div').attr('class', 'leagueLabels');
+
+				const leagueLabelBlocks = leagueLabels
+					.selectAll('.leagueBlocks')
+					.data(leagues)
+					.enter()
+					.append('div')
+					.attr('class', 'leagueBlocks')
+
+				const leagueLabelText = leagueLabelBlocks
+					.append('p')
+					.text(d => d)
 
 				const decadeBlocks = $vis
 					.selectAll('.decade')
@@ -53,12 +79,14 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 					.append('div')
 					.attr('class', function(d) { return `league league-${d.key}` })
 					.style('background-color', function(d) {
-						return colorScale(d.value.percentHyphen)
+						if (d.value !== null) { return colorScale(d.value.percentHyphen) }
 					})
 
 				const percentText = leagueBlocks
 						.append('p')
-						.text(d => `${d.value.percentHyphen}%`)
+						.text(function(d) {
+							if (d.value !== null) { return `${d.value.percentHyphen}%` }
+						})
 
 				Chart.resize();
 				Chart.render();
