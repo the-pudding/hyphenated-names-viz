@@ -19,18 +19,28 @@
 
 			&__left
 				width 50%
-				background-color blue
+				background-color $orange
 				text-align right
 
 			&__right
-					background-color red
+					background-color $navy
 					text-align left
 
 			.lastName
 				text-transform uppercase
 				margin 0
-				font-weight 700
-				set-type-size(xxx-large, true)
+				font-family $anton
+				//set-type-size(xxx-large, true)
+				font-size 100px
+				letter-spacing 0.125rem
+
+				&__left
+					color $navy
+					padding-right 1rem
+
+				&__right
+						color $yellow
+						padding-left 1rem
 
 		.deets-container
 			width 100%

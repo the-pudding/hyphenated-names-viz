@@ -1,16 +1,19 @@
 /* global d3 */
 import loadData from './load-data'
 import './pudding-chart/heatmap'
+import './pudding-chart/histogram'
 
 /* data */
 let allNames = []
 let nestedNames = []
 let nestedLengths = []
-let chart = null;
+let chartHeat = null;
+let chartHisto = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
 
 /* dom */
 const $heatMap = d3.select('.heatmap figure')
+const $histogram = d3.select('.histogram figure')
 
 function fillValues(values) {
 	return leagues.map(league => {
@@ -51,14 +54,18 @@ function histogramData(data) {
 		}))
 
 	nestedLengths = nestedLengths.sort(function(a,b) { return a.key - b.key; })
-
-	console.log(nestedLengths)
 }
 
 function setupHeatMap() {
-	chart = $heatMap
+	chartHeat = $heatMap
 		.datum(nestedNames)
 		.puddingHeatMap()
+}
+
+function setupHistogram() {
+	chartHisto = $histogram
+		.datum(nestedLengths)
+		.puddingHistogram()
 }
 
 function resize() {}
@@ -71,6 +78,7 @@ function init() {
 		setupHeatMap(nestedNames)
 
 		histogramData(allNames)
+		setupHistogram()
 	}).catch(console.error)
 
 }
