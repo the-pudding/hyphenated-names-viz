@@ -36,7 +36,6 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 			init() {
 				$heatMapContainer = $sel.append('div').attr('class', 'pudding-chart');
 
-				console.log(data)
 				// setup viz group
 				$labels = $heatMapContainer.append('div').attr('class', 'g-labels');
 				$vis = $heatMapContainer.append('div').attr('class', 'g-vis');

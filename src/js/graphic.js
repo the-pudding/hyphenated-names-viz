@@ -5,6 +5,7 @@ import './pudding-chart/heatmap'
 /* data */
 let allNames = []
 let nestedNames = []
+let nestedLengths = []
 let chart = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
 
@@ -18,12 +19,12 @@ function fillValues(values) {
 	})
 }
 
-function cleanData(data) {
+function heatMapData(data) {
 	const filteredData = data[0].filter(d => d.decade >= '1950')
 
 	nestedNames = d3.nest()
-		.key(function(d) { return d.decade; }).sortKeys(d3.ascending)
-		.key(function(d) { return d.league; }).sortKeys(function(a,b) { return leagues.indexOf(a) - leagues.indexOf(b); })
+		.key(d => d.decade).sortKeys(d3.ascending)
+		.key(d => d.league).sortKeys(function(a,b) { return leagues.indexOf(a) - leagues.indexOf(b); })
 		.rollup(values => {
 			const allNames = values.length
 			const withHyphens = values.filter(d => d.hyphen == "true").length
@@ -35,6 +36,23 @@ function cleanData(data) {
 			...d,
 			values: fillValues(d.values)
 		}))
+}
+
+function histogramData(data) {
+	const filteredData = data[0].filter(d => d.hyphen >= 'true')
+
+	nestedLengths = d3.nest()
+		.key(d => d.nameLength)
+		.entries(filteredData)
+		.map(d => ({
+			...d,
+			key: +d.key,
+			values: d.values
+		}))
+
+	nestedLengths = nestedLengths.sort(function(a,b) { return a.key - b.key; })
+
+	console.log(nestedLengths)
 }
 
 function setupHeatMap() {
@@ -49,9 +67,10 @@ function init() {
 
 	loadData().then(result => {
     allNames = result
-		cleanData(allNames)
-
+		heatMapData(allNames)
 		setupHeatMap(nestedNames)
+
+		histogramData(allNames)
 	}).catch(console.error)
 
 }
