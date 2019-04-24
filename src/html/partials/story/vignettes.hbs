@@ -9,15 +9,20 @@
 				<p class='lastName lastName__right'>{{lastNameRight}}</p>
 			</div>
 		</div>
-		<div class='deets-container'>
-			<div class='deets-container__text'>
-				<p><span>Full name: </span>{{firstName}} {{lastName}}</p>
-				<p><span>League: </span>{{league}}</p>
-				<p><span>Position: </span>{{position}}</p>
-				<p><span>Dates: </span>{{startYear}}—{{endYear}}</p>
-				<p>{{text}}</p>
+		<div class='athlete__body'>
+			<div class='img-container'>
+				<img alt='{{firstName}} {{lastName}} illustration' src='assets/images/{{image}}'/>
 			</div>
-		</div>
+			<div class='deets-container'>
+				<div class='deets-container__text'>
+					<p><span>Full name: </span>{{firstName}} {{lastName}}</p>
+					<p><span>League: </span>{{league}}</p>
+					<p><span>Position: </span>{{position}}</p>
+					<p><span>Dates: </span>{{startYear}}—{{endYear}}</p>
+					<p>{{text}}</p>
+				</div>
+			</div>
+		</div>	
 	</div>
 	{{/each}}
 </section>
