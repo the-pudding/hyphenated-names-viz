@@ -57,6 +57,7 @@ d3.selection.prototype.puddingHistogram = function init(options) {
 				const name = nameBlocks
 					.append('p')
 					.text(d => `${d.name}`)
+					//.attr('class', d => `d-${d.decade}`)
 
 				Chart.resize();
 				Chart.render();

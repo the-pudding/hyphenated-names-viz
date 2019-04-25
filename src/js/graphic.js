@@ -7,6 +7,7 @@ import './pudding-chart/histogram'
 let allNames = []
 let nestedNames = []
 let nestedLengths = []
+let nestedReasons = []
 let chartHeat = null;
 let chartHisto = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
@@ -54,6 +55,21 @@ function histogramData(data) {
 		}))
 
 	nestedLengths = nestedLengths.sort(function(a,b) { return a.key - b.key; })
+}
+
+function histogramData2(data) {
+	const filteredData = data[0].filter(d => d.hyphen >= 'true')
+
+	nestedReasons = d3.nest()
+		.key(d => d.reason)
+		.entries(filteredData)
+		.map(d => ({
+			...d,
+			key: d.key,
+			values: d.values
+		}))
+
+	console.log(nestedReasons)
 }
 
 function setupHeatMap() {
