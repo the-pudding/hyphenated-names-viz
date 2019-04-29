@@ -68,6 +68,19 @@
 		padding 1rem
 		position relative
 
+		.tooltip
+			position absolute
+			background-color $white
+			font-family $sans-display
+			padding 0.5rem
+			set-type-size('small', true)
+			color darken($navy, 0.9)
+			opacity 0
+			border 2px solid darken($navy, 0.9)
+
+			span
+				font-weight 600
+
 		.g-vis
 			display flex
 			flex-wrap wrap

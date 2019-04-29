@@ -31,9 +31,29 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		const $hyphenCount = d3.select('.hyphenCount')
 		const $totalCount = d3.select('.totalCount')
 		const $leagueName = d3.select('.leagueName')
+		let $tooltip = null
 		//const $percentCount = d3.select('.percentCount')
 
 		// helper functions
+		function mouseOverName(data){
+			if (data.hyphen == 'true') {
+				$tooltip.transition(300).style('opacity', 1)
+				$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
+
+				let right = d3.event.pageX > window.innerWidth / 2;
+				let offset = right ? $tooltip.node().offsetWidth + 5 : 0;
+
+				$tooltip
+					.style('left', (d3.event.pageX - offset) + 'px')
+					.style('top', (d3.event.pageY - 300) + 'px')
+			}
+		}
+
+		function mouseOutName(data){
+			if (data.hyphen == 'true') {
+				$tooltip.transition(300).style('opacity', 0)
+			}
+		}
 
 		const Chart = {
 			// called once at start
@@ -63,10 +83,15 @@ d3.selection.prototype.puddingBlock = function init(options) {
 					.append('p')
 					.attr('class', d => `name name__${d.hyphen}`)
 					.text(d => d.lastName)
+					.on('mouseover', mouseOverName)
+					.on('mouseout', mouseOutName)
 
 				$hyphenCount.text(sumData.withHyphens)
 				$totalCount.text(sumData.allNames)
 				$leagueName.text(blockData[0].key)
+
+				$tooltip = $blockContainer.append('div').attr('class', 'tooltip')
+
 				//$percentCount.text(`${sumData.percentHyphen}%`)
 			},
 			// on resize, update new dimensions
