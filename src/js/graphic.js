@@ -8,6 +8,7 @@ let allNames = []
 let nestedNames = []
 let nestedLengths = []
 let nestedReasons = []
+let nestedDecades = []
 let chartHeat = null;
 let chartHisto = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
@@ -72,6 +73,21 @@ function histogramData2(data) {
 	console.log(nestedReasons)
 }
 
+function histogramData3(data) {
+	const filteredData = data[0].filter(d => d.hyphen >= 'true')
+
+	nestedDecades = d3.nest()
+		.key(d => +d.decade).sortKeys(d3.ascending)
+		.entries(filteredData)
+		.map(d => ({
+			...d,
+			key: d.key,
+			values: d.values
+		}))
+
+	console.log(nestedDecades)
+}
+
 function setupHeatMap() {
 	chartHeat = $heatMap
 		.datum(nestedNames)
@@ -80,7 +96,7 @@ function setupHeatMap() {
 
 function setupHistogram() {
 	chartHisto = $histogram
-		.datum(nestedLengths)
+		.datum(nestedDecades)
 		.puddingHistogram()
 }
 
@@ -93,7 +109,7 @@ function init() {
 		heatMapData(allNames)
 		setupHeatMap(nestedNames)
 
-		histogramData(allNames)
+		histogramData3(allNames)
 		setupHistogram()
 	}).catch(console.error)
 

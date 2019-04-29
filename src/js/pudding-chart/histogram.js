@@ -47,6 +47,12 @@ d3.selection.prototype.puddingHistogram = function init(options) {
 					.append('div')
 					.attr('class', d => `length length-${d.key}`)
 
+				const decadeLabel = lengthBlocks
+					.append('div')
+					.attr('class', 'label')
+					.append('p')
+					.text(d => `${d.key}s`)
+
 				const nameBlocks = lengthBlocks
 					.selectAll('.length')
 					.data(d => d.values)
@@ -57,7 +63,7 @@ d3.selection.prototype.puddingHistogram = function init(options) {
 				const name = nameBlocks
 					.append('p')
 					.text(d => `${d.name}`)
-					//.attr('class', d => `d-${d.decade}`)
+					.attr('class', d => `${d.league}`)
 
 				Chart.resize();
 				Chart.render();
