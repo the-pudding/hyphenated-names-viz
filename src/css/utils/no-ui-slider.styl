@@ -24,15 +24,16 @@
 .noUi-base,
 .noUi-connects {
   width: 100%;
-  height: 100%;
+  height: 40%;
   position: relative;
-  z-index: 1;
+  top: 25%;
+  z-index: 0;
 }
 /* Wrapper for all connect elements.
  */
 .noUi-connects {
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
 }
 .noUi-connect,
 .noUi-origin {
@@ -109,7 +110,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
   border-radius: 3px;
 }
 .noUi-connect {
-  background: #3FB8AF;
+  background: #FCD206;
 }
 /* Handles and cursors;
  */
@@ -263,10 +264,7 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 .noUi-tooltip {
   display: block;
   position: absolute;
-  border: 1px solid #D9D9D9;
-  border-radius: 3px;
-  background: #fff;
-  color: #000;
+  color: #676b88;
   padding: 5px;
   text-align: center;
   white-space: nowrap;
@@ -285,34 +283,43 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 }
 }
 
-.slider
+.block__slider
+  font-family $sans-display
+  font-weight 600
 	&.noUi-target
 		box-shadow none
 		border none
 		background-color transparent
 	&.noUi-horizontal
 		cursor pointer
-		height 20px
+		height 14px
 		background transparent
+
+		.noUi-connect
+			opacity 1
+			top 1px
+			background $yellow
+
 		.noUi-base
 			height 100%
 			&:after
 				content ''
 				display block
 				width 100%
-				height 2px
-				background $fg
+				height 1px
+				background $navy-light
 				top 50%
 				position absolute
 				border-radius 2px
+
 		.noUi-handle
 			outline none
-			width 20px
-			height 20px
+			width 18px
+			height 18px
 			left -@width * 0.5
-			top 0
-			border 2px solid $fg
-			background-color $primary
+			top -2px
+			border 2px solid $navy
+			background-color $yellow
 			border-radius 50%
 			box-shadow none
 			cursor pointer
@@ -320,4 +327,14 @@ html:not([dir="rtl"]) .noUi-horizontal .noUi-handle {
 				display none
 			&:after
 				display none
-		
+
+		.noUi-tooltip
+			background transparent
+			set-type-size(small)
+			color $navy-light
+			// border 1px solid $fg-lightest
+			border none
+			bottom auto
+			top -10px
+			padding 0.25em
+			transform translate(-50%, 24px)

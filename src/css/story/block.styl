@@ -1,0 +1,86 @@
+.block
+	width 100%
+	margin 0 auto 2rem auto
+	background-color $navy
+	height 80vh
+	position relative
+
+	&__controls
+		position absolute
+		bottom 0
+		width 100%
+		height 6rem
+		border-top 1px solid $navy-light
+		background-color darken($navy, 0.9)
+		display flex
+		justify-content space-between
+
+		.nums
+			display flex
+			padding 0.5rem 0 0 1rem
+			flex-direction row
+			align-items center
+			color $navy-light
+			font-family $sans-display
+
+			p
+				padding 0 0.25rem
+				margin 0
+
+			.leagueName
+				font-family $anton
+				color $light-navy
+				set-type-size('xx-large', true)
+				text-transform uppercase
+				border-right 1px solid $navy-light
+				padding-right 1rem
+
+			.hyphenCount, .totalCount
+				font-family $anton
+				color $yellow
+				set-type-size('xx-large', true)
+
+			.hyphenCount
+				padding-left 1rem
+
+			.percentCount
+				font-family $anton
+				color $light-navy
+				set-type-size('xx-large', true)
+				text-transform uppercase
+				border-left 1px solid $navy-light
+				padding-left 1rem
+				margin-left 1rem
+
+		.slider__wrapper
+			width 20rem
+			padding 0 1.5rem 0 0
+			display flex
+			align-items center
+			margin-top -1rem
+
+			.block__slider
+				width calc(100% - 2rem)
+				margin 0 auto
+
+	figure
+		width 100%
+		padding 1rem
+		position relative
+
+		.g-vis
+			display flex
+			flex-wrap wrap
+			justify-content space-between
+
+			.name
+				font-family $sans-display
+				margin 0
+				padding 0.125rem
+				font-size 14px
+				color $navy-light
+				//set-type-size('xx-small', true)
+
+				&__true
+					color $yellow
+					font-weight 600

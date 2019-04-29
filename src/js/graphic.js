@@ -2,20 +2,23 @@
 import loadData from './load-data'
 import './pudding-chart/heatmap'
 import './pudding-chart/histogram'
+import './pudding-chart/block'
+import noUiSlider from 'nouislider'
 
 /* data */
 let allNames = []
 let nestedNames = []
-let nestedLengths = []
-let nestedReasons = []
 let nestedDecades = []
 let chartHeat = null;
 let chartHisto = null;
+let chartBlock = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
 
 /* dom */
 const $heatMap = d3.select('.heatmap figure')
 const $histogram = d3.select('.histogram figure')
+const $block = d3.select('.block figure')
+const $slider = d3.select('.block__slider');
 
 function fillValues(values) {
 	return leagues.map(league => {
@@ -43,61 +46,44 @@ function heatMapData(data) {
 		}))
 }
 
-function histogramData(data) {
-	const filteredData = data[0].filter(d => d.hyphen >= 'true')
-
-	nestedLengths = d3.nest()
-		.key(d => d.nameLength)
-		.entries(filteredData)
-		.map(d => ({
-			...d,
-			key: +d.key,
-			values: d.values
-		}))
-
-	nestedLengths = nestedLengths.sort(function(a,b) { return a.key - b.key; })
-}
-
-function histogramData2(data) {
-	const filteredData = data[0].filter(d => d.hyphen >= 'true')
-
-	nestedReasons = d3.nest()
-		.key(d => d.reason)
-		.entries(filteredData)
-		.map(d => ({
-			...d,
-			key: d.key,
-			values: d.values
-		}))
-
-	console.log(nestedReasons)
-}
-
-function histogramData3(data) {
-	const filteredData = data[0].filter(d => d.hyphen >= 'true')
-
-	nestedDecades = d3.nest()
-		.key(d => +d.decade).sortKeys(d3.ascending)
-		.entries(filteredData)
-		.map(d => ({
-			...d,
-			key: d.key,
-			values: d.values
-		}))
-
-	console.log(nestedDecades)
-}
-
 function setupHeatMap() {
 	chartHeat = $heatMap
 		.datum(nestedNames)
 		.puddingHeatMap()
 }
 
-function setupHistogram() {
-	chartHisto = $histogram
-		.datum(nestedDecades)
-		.puddingHistogram()
+function setupBlock(data) {
+	chartBlock = $block
+		.datum(data)
+		.puddingBlock()
+}
+
+function setupSlider() {
+	const min = 1950;
+	const max = 2010;
+	const start = [min, max];
+
+	const slider = noUiSlider.create($slider.node(), {
+		start: 2010,
+		step: 10,
+		tooltips: [
+			{
+				to: value => value
+			}
+		],
+		range: {
+			min,
+			max
+		}
+	});
+
+	slider.on('slide', handleSlide);
+}
+
+function handleSlide(value) {
+	const decade = Math.floor(value)
+	d3.selectAll('.name').remove()
+	chartBlock.buildNameBlock('nba', decade)
 }
 
 function resize() {}
@@ -108,9 +94,11 @@ function init() {
     allNames = result
 		heatMapData(allNames)
 		setupHeatMap(nestedNames)
+		setupBlock(nestedNames)
+		setupSlider()
 
-		histogramData3(allNames)
-		setupHistogram()
+		//histogramData(allNames)
+		//setupHistogram()
 	}).catch(console.error)
 
 }
