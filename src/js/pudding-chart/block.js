@@ -83,8 +83,15 @@ d3.selection.prototype.puddingBlock = function init(options) {
 					.append('p')
 					.attr('class', d => `name name__${d.hyphen}`)
 					.text(d => d.lastName)
+					.style('opacity', 0)
 					.on('mouseover', mouseOverName)
 					.on('mouseout', mouseOutName)
+
+				names
+					.transition()
+					.delay(function(d,i) { return i * 2 })
+					.duration(1000)
+					.style('opacity', 1)
 
 				$hyphenCount.text(sumData.withHyphens)
 				$totalCount.text(sumData.allNames)
