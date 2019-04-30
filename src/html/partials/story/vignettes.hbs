@@ -1,9 +1,14 @@
 <section class='vignettes'>
 	<div class='wrapper-line'>
 		<h3>{{doc.vignetteHed}}</h3>
-		{{#each doc.intro}}
+		{{#each doc.vignetteCopy}}
 	    <p class='prose'>{{{value}}}</p>
 	  {{/each}}
+		<ul>
+			{{#each doc.vignetteBullets}}
+    	<li>{{{value}}}</li>
+			{{/each}}
+		<ul>
 	</div>
 	{{#each doc.vignettes}}
 	<div class='athlete' id='{{lastName}}'>
@@ -23,10 +28,8 @@
 			</div>
 			<div class='deets-container'>
 				<div class='deets-container__text'>
-					<p><span>Full name: </span>{{firstName}} {{lastName}}</p>
-					<p><span>League: </span>{{league}}</p>
-					<p><span>Position: </span>{{position}}</p>
-					<p><span>Dates: </span>{{startYear}}—{{endYear}}</p>
+					<p class='deets__name'>{{firstName}} {{lastName}}</p>
+					<p class='deets__category'>{{category}}</p>
 					<p>{{text}}</p>
 				</div>
 			</div>

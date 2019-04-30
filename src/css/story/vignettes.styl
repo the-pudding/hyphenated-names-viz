@@ -17,6 +17,35 @@
 			text-align center
 			font-family $anton
 			text-transform uppercase
+			set-type-size('x-large', true)
+
+		ul
+			margin 0 auto 6rem auto
+			max-width $column-width
+			padding 0 6rem
+			color darken($navy, 0.9)
+			font-family $sans
+
+			li
+				margin-bottom 1rem
+
+				&::before
+					content '\2022'
+					color darken($navy, 0.9)
+					font-weight 600
+					display inline-block
+					width 1em
+					margin-left -1em
+
+				span
+					font-weight 600
+					background-color $yellow
+					white-space nowrap
+					padding 0 0.25rem
+
+					&:hover
+						background-color $orange
+
 
 	.athlete
 		width 100%
@@ -99,15 +128,27 @@
 			.deets-container
 				width 100%
 				padding 1rem
-				margin-top 3rem
+				margin-top 1rem
 
 				&__text
 					p
+						color darken($navy, 0.9)
 						margin 0
 						padding 0
+						font-family $sans
 
 						span
 							font-weight 700
+
+					.deets__name
+						font-family $anton
+						text-transform uppercase
+						set-type-size('x-large', true)
+
+					.deets__category
+						font-weight 600
+						margin-bottom 1rem
+
 
 #Rowland-Smith, #Green-Ellis, #Grand-Pierre
 	.img-container
