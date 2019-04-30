@@ -1,3 +1,9 @@
 <section class='heatmap'>
-	<figure></figure>
+	<div class='wrapper-line'>
+		<h3>{{doc.heatmapHed}}</h3>
+		<figure></figure>
+		{{#each doc.intro}}
+	    <p class='prose'>{{{value}}}</p>
+	  {{/each}}
+	</div>
 </section>

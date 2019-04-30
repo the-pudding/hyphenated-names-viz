@@ -1,27 +1,47 @@
 .intro
 	margin 0 auto
 	padding 6rem 1rem 3rem 1rem
+	background-color $orange
+	color darken($navy, 0.9)
 
 	&__hed
-		max-width 60rem
-		margin 0 auto
+		max-width 80rem
+		margin -1rem auto
 		text-align center
-		
+		font-family $anton
+		text-transform uppercase
+		font-size 60px
+		padding 0
+
+	.accent
+		font-family $anton
+		text-transform uppercase
+		font-size 150px
+
 	&__dek
 		max-width $column-width
 		margin 0 auto
 		margin-top 1rem
 		text-align center
-	
+
 	&__byline
+		font-family $sans-display
 		max-width $column-width
-		margin 0 auto
-		margin-top 1rem
+		margin 1rem auto 4rem auto
 		text-align center
-	
+
+		a
+			color darken($navy, 0.9)
+
 	&__time
 		display block
 		max-width $column-width
 		margin 0 auto
 		margin-top 1rem
 		text-align center
+
+.prose
+	font-family $sans
+	padding 0 1rem
+	margin 1rem auto
+	color darken($navy, 0.9)

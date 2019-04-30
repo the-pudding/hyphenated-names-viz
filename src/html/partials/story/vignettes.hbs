@@ -1,11 +1,19 @@
 <section class='vignettes'>
+	<div class='wrapper-line'>
+		<h3>{{doc.vignetteHed}}</h3>
+		{{#each doc.intro}}
+	    <p class='prose'>{{{value}}}</p>
+	  {{/each}}
+	</div>
 	{{#each doc.vignettes}}
 	<div class='athlete' id='{{lastName}}'>
 		<div class='name-container'>
 			<div class='name-container__left'>
 				<p class='lastName lastName__left'>{{lastNameLeft}}</p>
+				<div class='block__left'></div>
 			</div>
 			<div class='name-container__right'>
+				<div class='block__right'></div>
 				<p class='lastName lastName__right'>{{lastNameRight}}</p>
 			</div>
 		</div>
@@ -22,7 +30,7 @@
 					<p>{{text}}</p>
 				</div>
 			</div>
-		</div>	
+		</div>
 	</div>
 	{{/each}}
 </section>

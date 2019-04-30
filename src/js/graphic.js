@@ -4,6 +4,7 @@ import './pudding-chart/heatmap'
 import './pudding-chart/histogram'
 import './pudding-chart/block'
 import noUiSlider from 'nouislider'
+import enterView from 'enter-view'
 
 /* data */
 let allNames = []
@@ -19,6 +20,25 @@ const $heatMap = d3.select('.heatmap figure')
 const $histogram = d3.select('.histogram figure')
 const $block = d3.select('.block figure')
 const $slider = d3.select('.block__slider');
+
+function slidingNames() {
+	enterView({
+		selector: '.name-container__left',
+		enter: function(el) {
+			el.classList.add('entered');
+		},
+		offset: 0.5,
+		once: true
+	});
+	enterView({
+		selector: '.name-container__right',
+		enter: function(el) {
+			el.classList.add('entered');
+		},
+		offset: 0.5,
+		once: true
+	});
+}
 
 function fillValues(values) {
 	return leagues.map(league => {
@@ -96,6 +116,7 @@ function init() {
 		setupHeatMap(nestedNames)
 		setupBlock(nestedNames)
 		setupSlider()
+		slidingNames()
 
 		//histogramData(allNames)
 		//setupHistogram()

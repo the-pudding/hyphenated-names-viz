@@ -45,7 +45,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 
 				$tooltip
 					.style('left', (d3.event.pageX - offset) + 'px')
-					.style('top', (d3.event.pageY - 300) + 'px')
+					.style('top', (d3.event.pageY) + 'px')
 			}
 		}
 

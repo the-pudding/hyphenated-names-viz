@@ -1,17 +1,35 @@
 .heatmap
 	width 100%
-	margin 0 auto 2rem auto
-	max-width $column-width
-	padding 0 1rem
+	padding 0 1rem 0 1rem
+	background-color $orange
+
+	.wrapper-line
+		max-width 60rem
+		padding 4rem 0 2rem 0
+		margin 0 auto 0 auto
+		border-top 3px solid $navy
+		border-left 3px solid $navy
+		border-right 3px solid $navy
+
+		h3
+			color darken($navy, 0.9)
+			margin 0 auto 2rem auto
+			max-width $column-width
+			text-align center
+			font-family $anton
+			text-transform uppercase
 
 	figure
 		width 100%
+		max-width $column-width
+		margin 0 auto 4rem auto
 
 		.g-vis, .g-labels
 			display flex
 
 		.decade, .decadeLabel
 			width 12.5%
+			color darken($navy, 0.9)
 
 			.league
 				height 2.5rem
@@ -24,6 +42,7 @@
 				margin 0
 				padding 0.5rem 1rem
 				text-align center
+				color darken($navy, 0.9)
 
 		.decadeLabel p
 			font-weight 600
@@ -46,3 +65,4 @@
 				padding 0.5rem 0
 				font-weight 600
 				text-transform uppercase
+				color darken($navy, 0.9)
