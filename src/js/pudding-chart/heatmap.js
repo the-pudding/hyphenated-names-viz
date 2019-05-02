@@ -49,7 +49,7 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 
 				const decadeLabelText = decadeLabels
 					.append('p')
-					.text(d => d.key)
+					.text(d => `${d.key}s`)
 
 				const leagueLabels = $vis.append('div').attr('class', 'leagueLabels');
 

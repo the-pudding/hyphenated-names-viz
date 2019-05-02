@@ -97,7 +97,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				$hyphenCount.text(sumData.withHyphens)
 				$totalCount.text(sumData.allNames)
 				$leagueName.text(blockData[0].key)
-				$decadeNum.text(decade)
+				$decadeNum.text(`${decade}s`)
 
 				$tooltip = $blockContainer.append('div').attr('class', 'tooltip')
 

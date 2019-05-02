@@ -59,7 +59,8 @@
 				padding-right 1rem
 
 			.decadeNum
-				padding-left 1rem	
+				padding-left 1rem
+				text-transform none
 
 			.hyphenCount, .totalCount
 				font-family $anton
@@ -123,3 +124,7 @@
 				&__true
 					color $yellow
 					font-weight 600
+
+.noUi-tooltip::after
+	 display inline-block
+	 content 's'
