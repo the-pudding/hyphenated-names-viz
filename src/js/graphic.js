@@ -19,7 +19,11 @@ const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
 const $heatMap = d3.select('.heatmap figure')
 const $histogram = d3.select('.histogram figure')
 const $block = d3.select('.block figure')
-const $slider = d3.select('.block__slider');
+const $slider = d3.select('.block__slider')
+const $leagueButton = d3.selectAll('.block__buttons p')
+const $leagueName = d3.select('.leagueName')
+const $nameSpan = d3.selectAll('.vignettes span')
+let slider = null;
 
 function slidingNames() {
 	enterView({
@@ -83,8 +87,8 @@ function setupSlider() {
 	const max = 2010;
 	const start = [min, max];
 
-	const slider = noUiSlider.create($slider.node(), {
-		start: 2010,
+	slider = noUiSlider.create($slider.node(), {
+		start: 1950,
 		step: 10,
 		tooltips: [
 			{
@@ -101,9 +105,34 @@ function setupSlider() {
 }
 
 function handleSlide(value) {
+	const league = $leagueName.node().textContent
+	console.log(league)
 	const decade = Math.floor(value)
 	d3.selectAll('.name').remove()
-	chartBlock.buildNameBlock('nba', decade)
+	chartBlock.buildNameBlock(league, decade)
+}
+
+function handleLeagueClick(){
+	$leagueButton.classed('is-active', false)
+	this.classList.add('is-active')
+	const league = this.textContent
+	const decade = d3.select('.noUi-tooltip').node().textContent
+	d3.selectAll('.name').remove()
+	chartBlock.buildNameBlock(league, decade)
+}
+
+function scrollTo(element) {
+	window.scroll({
+		behavior: 'smooth',
+		left: 0,
+		top: element.offsetTop - 48
+	});
+}
+
+function handleSpanClick() {
+	const player = (this.className).split('_')[1]
+	const el = d3.select(`#${player}`).node();
+	scrollTo(el);
 }
 
 function resize() {}
@@ -117,6 +146,9 @@ function init() {
 		setupBlock(nestedNames)
 		setupSlider()
 		slidingNames()
+
+		$leagueButton.on('click', handleLeagueClick)
+		$nameSpan.on('click', handleSpanClick)
 
 		//histogramData(allNames)
 		//setupHistogram()
