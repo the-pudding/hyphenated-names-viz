@@ -1,11 +1,13 @@
 <div class='conclusion'>
-	{{#each doc.conclusionCopy}}
-    <p class='prose'>{{{value}}}</p>
-  {{/each}}
-	<div class='methods'>
-		<h3>{{{doc.methodsHed}}}</h3>
-		{{#each doc.methodsCopy}}
-	    <p>{{{value}}}</p>
+	<div class='wrapper-line'>
+		{{#each doc.conclusionCopy}}
+	    <p class='prose'>{{{value}}}</p>
 	  {{/each}}
-	</div>
+		<div class='methods'>
+			<h3>{{{doc.methodsHed}}}</h3>
+			{{#each doc.methodsCopy}}
+		    <p>{{{value}}}</p>
+		  {{/each}}
+		</div>
+	</div>	
 </div>
