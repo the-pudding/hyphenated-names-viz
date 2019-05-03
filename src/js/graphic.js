@@ -164,7 +164,7 @@ function init() {
 		setupSlider()
 		slidingNames()
 		runInterval()
-
+		
 		$leagueDropdown.on('change', handleLeagueDropdown)
 		$nameSpan.on('click', handleSpanClick)
 

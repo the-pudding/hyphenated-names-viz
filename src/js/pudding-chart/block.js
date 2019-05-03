@@ -67,6 +67,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 
 				// setup viz group
 				$vis = $blockContainer.append('div').attr('class', 'g-vis');
+				$tooltip = d3.select('body').append('div').attr('class', 'tooltip')
 
 				//Chart.buildNameBlock('nba', '1950')
 
@@ -89,7 +90,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 					.text(d => d.lastName)
 					.style('opacity', 0)
 					.on('mouseover', mouseOverName)
-					.on('mouseout', mouseOutName)
+					.on('mouseleave', mouseOutName)
 
 				names
 					.transition()
@@ -101,8 +102,6 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				$totalCount.text(sumData.allNames)
 				$leagueName.text(blockData[0].key)
 				$decadeNum.text(`${decade}s`)
-
-				$tooltip = d3.select('body').append('div').attr('class', 'tooltip')
 
 				$percentCount.text(`(${sumData.percentHyphen}%)`)
 			},

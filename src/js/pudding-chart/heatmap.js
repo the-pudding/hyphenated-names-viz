@@ -28,6 +28,8 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 		// dom elements
 		let $heatMapContainer = null;
 		let $vis = null;
+		let percentText = null;
+		let decadeLabelText = null;
 
 		// helper functions
 
@@ -47,9 +49,8 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 					.append('div')
 					.attr('class', d => `decadeLabel decadeLabel-${d.key}`)
 
-				const decadeLabelText = decadeLabels
+				decadeLabelText = decadeLabels
 					.append('p')
-					.text(d => `${d.key}s`)
 
 				const leagueLabels = $vis.append('div').attr('class', 'leagueLabels');
 
@@ -81,11 +82,8 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 						if (d.value !== null) { return colorScale(d.value.percentHyphen) }
 					})
 
-				const percentText = leagueBlocks
+				percentText = leagueBlocks
 						.append('p')
-						.text(function(d) {
-							if (d.value !== null) { return `${d.value.percentHyphen}%` }
-						})
 
 				Chart.resize();
 				Chart.render();
@@ -93,6 +91,29 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 			// on resize, update new dimensions
 			resize() {
 				// defaults to grabbing dimensions from container element
+				width = $sel.node().offsetWidth
+
+				percentText
+					.text(function(d) {
+						if (d.value !== null && width > 500) {
+							const percent = +d.value.percentHyphen
+							return `${percent}%`
+						} else if (d.value !== null && width <= 500) {
+							const percent = +d.value.percentHyphen
+							return `${percent.toFixed(1)}%`
+						}
+					})
+
+				decadeLabelText
+					.text(function(d) {
+						if (width > 500) {
+							return `${d.key}s`
+						} else {
+							const slice = (d.key).slice(2, 5)
+							return `'${slice}s`
+						}
+					})
+
 				return Chart;
 			},
 			// update scales and render chart

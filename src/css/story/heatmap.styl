@@ -43,17 +43,25 @@
 			color darken($navy, 0.9)
 
 			.league
-				height 2.5rem
+				height 2.25rem
+				+mq('bp-3')
+					height 2.5rem
 				//border-bottom 1px solid $gray-light
 				//border-left 1px solid $gray-light
 
 			p
 				font-family $national
-				set-type-size('root', true)
+				set-type-size('x-small', true)
 				margin 0
-				padding 0.5rem 1rem
+				padding 0.5rem 0.25rem
 				text-align center
 				color darken($navy, 0.9)
+				+mq('bp-3')
+					padding 0.5rem
+					set-type-size('small', true)
+				+mq('bp-4')
+					set-type-size('root', true)
+					padding 0.5rem 1rem
 
 		.decadeLabel p
 			font-weight 600
@@ -66,14 +74,21 @@
 			width 12.5%
 
 		.leagueBlocks
-			height 2.5rem
+			height 2.25rem
+			+mq('bp-3')
+				height 2.5rem
 			//border-bottom 1px solid $gray-light
 
 			p
 				font-family $national
-				set-type-size('root', true)
+				set-type-size('x-small', true)
 				margin 0
-				padding 0.5rem 0
+				padding 0.5rem 0.25rem
 				font-weight 600
 				text-transform uppercase
 				color darken($navy, 0.9)
+				+mq('bp-3')
+					padding 0.5rem 0
+					set-type-size('small', true)
+				+mq('bp-4')
+					set-type-size('root', true)

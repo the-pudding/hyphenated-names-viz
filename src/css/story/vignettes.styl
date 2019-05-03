@@ -5,11 +5,15 @@
 	z-index set-index('top')
 
 	.wrapper-line
-		max-width 60rem
+		max-width none
+		width calc(100% - 2rem)
 		padding 4rem 0 2rem 0
-		margin 0 auto 0 auto
+		margin 0 1rem
 		border-left 3px solid $navy
 		border-right 3px solid $navy
+		+mq('bp-7')
+			margin 0 auto
+			max-width 60rem
 
 		h3
 			color darken($navy, 0.9)
@@ -21,11 +25,16 @@
 			set-type-size('x-large', true)
 
 		ul
-			margin 0 auto 6rem auto
+			margin 0 auto 4rem auto
 			max-width $column-width
-			padding 0 6rem
+			padding 0 3rem
 			color darken($navy, 0.9)
 			font-family $sans
+			+mq('bp-3')
+				padding 0 4rem
+				margin 0 auto 6rem auto
+			+mq('bp-4')
+				padding 0 6rem
 
 			li
 				margin-bottom 1rem
@@ -82,9 +91,15 @@
 					transition transform 400ms ease-in-out
 
 				.block__left
-					height 1.5rem
-					width 1.5rem
+					height 0.75rem
+					width 0.75rem
 					background-color $white
+					+mq('bp-3')
+						height 1rem
+						width 1rem
+					+mq('bp-4')
+						height 1.5rem
+						width 1.5rem
 
 			&__right
 					background-color $navy
@@ -97,42 +112,72 @@
 						transition transform 400ms ease-in-out
 
 					.block__right
-						height 1.5rem
-						width 1.5rem
+						height 0.75rem
+						width 0.75rem
 						background-color $white
+						+mq('bp-3')
+							height 1rem
+							width 1rem
+						+mq('bp-4')
+							height 1.5rem
+							width 1.5rem
 
 			.lastName
 				text-transform uppercase
 				margin 0
 				font-family $anton
-				//set-type-size(xxx-large, true)
-				font-size 100px
+				font-size 36px
 				letter-spacing 0.125rem
+				+mq('bp-3')
+					font-size 48px
+				+mq('bp-4')
+					font-size 65px
+				+mq('bp-5')
+					font-size 80px
+				+mq('bp-6')
+					font-size 100px
 
 				&__left
 					color $navy
-					padding-right 1rem
+					padding-right 0.5rem
+					+mq('bp-3')
+						padding-right 1rem
 
 				&__right
 						color $yellow
-						padding-left 1rem
+						padding-left 0.5rem
+						+mq('bp-3')
+							padding-right 1rem
 
 		&__body
 			display flex
-			max-width 60rem
-			margin -11rem auto 0 auto
+			flex-direction column
+			max-width none
+			width calc(100% - 2rem)
+			margin -11rem 1rem 0 1rem
 			z-index set-index('overlay')
-			padding 12rem 5rem 10rem 5rem
+			padding 12rem 0rem 6rem 0rem
 			border-right 3px solid $navy
 			border-left 3px solid $navy
+			+mq('bp-4')
+				padding 12rem 3rem 6rem 3rem
+			+mq('bp-5')
+				padding 12rem 5rem 6rem 5rem
+				flex-direction row
+			+mq('bp-7')
+				max-width 60rem
+				margin -11rem auto 0 auto
 
 			.img-container
-				max-width 600px
+				max-width 400px
+				margin 0 auto
 
 			.deets-container
 				width 100%
 				padding 1rem
-				margin-top 1rem
+				margin-top 0
+				+mq('bp-5')
+					margin-top 1rem
 
 				&__text
 					p
@@ -162,10 +207,14 @@
 
 #Rowland-Smith, #Green-Ellis, #Grand-Pierre
 	.img-container
-		order 2
+		order 1
+		+mq('bp-5')
+			order 2
 
 	.deets-container
-		order 1
+		order 2
+		+mq('bp-5')
+			order 1
 
 //#Grand-Pierre .athlete__body
 	//border-bottom 3px solid $navy

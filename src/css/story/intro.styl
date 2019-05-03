@@ -6,17 +6,28 @@
 
 	&__hed
 		max-width 80rem
-		margin -1rem auto
+		margin 0 auto
 		text-align center
 		font-family $anton
 		text-transform uppercase
-		font-size 60px
+		set-type-size('x-large', true)
 		padding 0
+		+mq('bp-3')
+			set-type-size('xx-large', true)
+		+mq('bp-5')
+			font-size 60px
+			margin -1rem auto
 
 	.accent
 		font-family $anton
 		text-transform uppercase
-		font-size 150px
+		set-type-size('xxxxx-large', true)
+		+mq('bp-3')
+			font-size 90px
+		+mq('bp-4')
+			font-size 120px
+		+mq('bp-5')
+			font-size 150px
 
 	&__dek
 		max-width $column-width
@@ -27,8 +38,10 @@
 	&__byline
 		font-family $sans-display
 		max-width $column-width
-		margin 4rem auto 0.5rem auto
+		margin 2rem auto 0.5rem auto
 		text-align center
+		+mq('bp-3')
+			margin 4rem auto 0.5rem auto
 
 		a
 			color darken($navy, 0.9)
@@ -39,10 +52,12 @@
 	&__illos
 		font-family $sans-display
 		max-width $column-width
-		margin 0 auto 4rem auto
+		margin 0 auto 3rem auto
 		text-align center
 		font-style italic
 		set-type-size('small', true)
+		+mq('bp-3')
+			margin 0 auto 4rem auto
 
 		a
 			color darken($navy, 0.9)
