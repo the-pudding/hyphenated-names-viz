@@ -34,12 +34,14 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		const $decadeNum = d3.select('.decadeNum')
 		let $hyphenNames = null
 		let $tooltip = null
-		//const $percentCount = d3.select('.percentCount')
+		const $percentCount = d3.select('.percentCount')
 
 		// helper functions
 		function mouseOverName(data){
 			if (data.hyphen == 'true') {
 				$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
+				console.log(d3.event.pageY)
+				$tooltip.style('top', (d3.event.pageY) + 'px')
 				$tooltip.transition(300).style('left', '0px')
 				$hyphenNames = d3.selectAll('.name__true')
 				const $nameUnderMouse = this
@@ -66,7 +68,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				// setup viz group
 				$vis = $blockContainer.append('div').attr('class', 'g-vis');
 
-				Chart.buildNameBlock('nba', '2010')
+				//Chart.buildNameBlock('nba', '1950')
 
 				Chart.resize();
 				Chart.render();
@@ -100,9 +102,9 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				$leagueName.text(blockData[0].key)
 				$decadeNum.text(`${decade}s`)
 
-				$tooltip = $blockContainer.append('div').attr('class', 'tooltip')
+				$tooltip = d3.select('body').append('div').attr('class', 'tooltip')
 
-				//$percentCount.text(`${sumData.percentHyphen}%`)
+				$percentCount.text(`(${sumData.percentHyphen}%)`)
 			},
 			// on resize, update new dimensions
 			resize() {

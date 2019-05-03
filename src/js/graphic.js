@@ -14,6 +14,8 @@ let chartHeat = null;
 let chartHisto = null;
 let chartBlock = null;
 const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
+let decade = 1950
+let interval = null
 
 /* dom */
 const $heatMap = d3.select('.heatmap figure')
@@ -105,15 +107,27 @@ function setupSlider() {
 	slider.on('slide', handleSlide);
 }
 
+function autoplaySlider() {
+	slider.set(decade)
+
+	const league = ($leagueDropdown.node()).options[($leagueDropdown.node()).selectedIndex].value
+	d3.selectAll('.name').remove()
+	d3.selectAll('.tooltip').transition(300).style('left', '-100%')
+	chartBlock.buildNameBlock(league, decade)
+	decade = decade + 10
+	if (decade > 2010) { clearInterval(interval) }
+}
+
 function handleSlide(value) {
-	const league = $leagueName.node().textContent
-	console.log(league)
+	clearInterval(interval)
+	const league = ($leagueDropdown.node()).options[($leagueDropdown.node()).selectedIndex].value
 	const decade = Math.floor(value)
 	d3.selectAll('.name').remove()
 	chartBlock.buildNameBlock(league, decade)
 }
 
 function handleLeagueDropdown() {
+	clearInterval(interval)
 	const league = this.value
 	const decade = d3.select('.noUi-tooltip').node().textContent
 	d3.selectAll('.name').remove()
@@ -134,6 +148,10 @@ function handleSpanClick() {
 	scrollTo(el);
 }
 
+function runInterval() {
+	interval = setInterval(autoplaySlider, 2000)
+}
+
 function resize() {}
 
 function init() {
@@ -145,6 +163,7 @@ function init() {
 		setupBlock(nestedNames)
 		setupSlider()
 		slidingNames()
+		runInterval()
 
 		$leagueDropdown.on('change', handleLeagueDropdown)
 		$nameSpan.on('click', handleSpanClick)
