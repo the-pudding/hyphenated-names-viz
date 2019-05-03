@@ -22,7 +22,7 @@ d3.selection.prototype.puddingHistogram = function init(options) {
 		// scales
 		const scaleX = null;
 		const scaleY = null;
-		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
+		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwsl']
 
 		// dom elements
 		let $histogramContainer = null;

@@ -22,7 +22,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		// scales
 		const scaleX = null;
 		const scaleY = null;
-		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
+		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwsl']
 		const decades = ['1950', '1960', '1970', '1980', '1990', '2000', '2010']
 
 		// dom elements

@@ -23,7 +23,7 @@ d3.selection.prototype.puddingHeatMap = function init(options) {
 		const scaleX = null;
 		const scaleY = null;
 		const colorScale = d3.scaleLinear().domain([0,6]).range(['#ffffff', '#FC5F1A'])
-		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
+		const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwsl']
 
 		// dom elements
 		let $heatMapContainer = null;

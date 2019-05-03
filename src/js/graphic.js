@@ -13,7 +13,7 @@ let nestedDecades = []
 let chartHeat = null;
 let chartHisto = null;
 let chartBlock = null;
-const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwls']
+const leagues = ['mlb', 'nba', 'nfl', 'nhl', 'mls', 'wnba', 'nwsl']
 let decade = 1950
 let interval = null
 
