@@ -21,6 +21,7 @@ const $histogram = d3.select('.histogram figure')
 const $block = d3.select('.block figure')
 const $slider = d3.select('.block__slider')
 const $leagueButton = d3.selectAll('.block__buttons p')
+const $leagueDropdown = d3.select('.leagueDropdown')
 const $leagueName = d3.select('.leagueName')
 const $nameSpan = d3.selectAll('.vignettes span')
 let slider = null;
@@ -112,10 +113,8 @@ function handleSlide(value) {
 	chartBlock.buildNameBlock(league, decade)
 }
 
-function handleLeagueClick(){
-	$leagueButton.classed('is-active', false)
-	this.classList.add('is-active')
-	const league = this.textContent
+function handleLeagueDropdown() {
+	const league = this.value
 	const decade = d3.select('.noUi-tooltip').node().textContent
 	d3.selectAll('.name').remove()
 	chartBlock.buildNameBlock(league, decade)
@@ -147,7 +146,7 @@ function init() {
 		setupSlider()
 		slidingNames()
 
-		$leagueButton.on('click', handleLeagueClick)
+		$leagueDropdown.on('change', handleLeagueDropdown)
 		$nameSpan.on('click', handleSpanClick)
 
 		//histogramData(allNames)

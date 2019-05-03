@@ -27,8 +27,22 @@
 	&__byline
 		font-family $sans-display
 		max-width $column-width
-		margin 1rem auto 4rem auto
+		margin 4rem auto 0.5rem auto
 		text-align center
+
+		a
+			color darken($navy, 0.9)
+			border-bottom 1px solid darken($navy, 0.9)
+			&:hover
+				color $white
+
+	&__illos
+		font-family $sans-display
+		max-width $column-width
+		margin 0 auto 4rem auto
+		text-align center
+		font-style italic
+		set-type-size('small', true)
 
 		a
 			color darken($navy, 0.9)
