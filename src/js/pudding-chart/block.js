@@ -32,27 +32,28 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		const $totalCount = d3.select('.totalCount')
 		const $leagueName = d3.select('.leagueName')
 		const $decadeNum = d3.select('.decadeNum')
+		let $hyphenNames = null
 		let $tooltip = null
 		//const $percentCount = d3.select('.percentCount')
 
 		// helper functions
 		function mouseOverName(data){
 			if (data.hyphen == 'true') {
-				$tooltip.transition(300).style('opacity', 1)
 				$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
-
-				let right = d3.event.pageX > window.innerWidth / 2;
-				let offset = right ? $tooltip.node().offsetWidth + 5 : 0;
-
-				$tooltip
-					.style('left', (d3.event.pageX - offset) + 'px')
-					.style('top', (d3.event.pageY) + 'px')
+				$tooltip.transition(300).style('left', '0px')
+				$hyphenNames = d3.selectAll('.name__true')
+				const $nameUnderMouse = this
+				$hyphenNames.transition(300).style('opacity', function() {
+					return (this === $nameUnderMouse) ? 1 : 0.5
+				})
 			}
 		}
 
 		function mouseOutName(data){
 			if (data.hyphen == 'true') {
-				$tooltip.transition(300).style('opacity', 0)
+				$tooltip.transition(300).style('left', '-100%')
+				$hyphenNames = d3.selectAll('.name__true')
+				$hyphenNames.transition(300).style('opacity', '1')
 			}
 		}
 

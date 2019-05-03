@@ -119,13 +119,17 @@
 
 		.tooltip
 			position absolute
+			left -100%
+			top 50%
 			background-color $white
 			font-family $sans-display
-			padding 0.5rem
-			set-type-size('small', true)
+			padding 1rem
+			set-type-size('root', true)
 			color darken($navy, 0.9)
-			opacity 0
-			border 2px solid darken($navy, 0.9)
+			//opacity 0
+			border-top 2px solid darken($navy, 0.9)
+			border-bottom 2px solid darken($navy, 0.9)
+			border-right 2px solid darken($navy, 0.9)
 
 			span
 				font-weight 600
