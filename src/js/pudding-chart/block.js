@@ -44,8 +44,13 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				} else {
 					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
 				}
+				$tooltip.transition().duration(300).style('opacity', 1)
 				$tooltip.style('top', (d3.event.pageY) + 'px')
-				$tooltip.transition(300).style('left', '0px')
+
+				const right = d3.event.pageX > window.innerWidth / 2;
+				const offset = right ? $tooltip.node().offsetWidth + 5 : 0;
+
+				$tooltip.style('left', (d3.event.pageX - offset) + 'px')
 				$hyphenNames = d3.selectAll('.name__true')
 				const $nameUnderMouse = this
 				$hyphenNames.transition(300).style('opacity', function() {
@@ -56,7 +61,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 
 		function mouseOutName(data){
 			if (data.hyphen == 'true') {
-				$tooltip.transition(300).style('left', '-100%')
+				$tooltip.transition().duration(300).style('opacity', 0)
 				$hyphenNames = d3.selectAll('.name__true')
 				$hyphenNames.transition(300).style('opacity', '1')
 			}

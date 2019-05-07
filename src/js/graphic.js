@@ -20,6 +20,7 @@ let interval = null
 /* dom */
 const $heatMap = d3.select('.heatmap figure')
 const $histogram = d3.select('.histogram figure')
+const $blockTop = d3.select('.block')
 const $blockNames = d3.select('.block__names')
 const $block = d3.select('.block figure')
 const $slider = d3.select('.block__slider')
@@ -124,6 +125,7 @@ function autoplaySlider() {
 }
 
 function handleSlide(value) {
+	jumpTo($blockTop.node())
 	clearInterval(interval)
 	const league = ($leagueDropdown.node()).options[($leagueDropdown.node()).selectedIndex].value
 	const decade = Math.floor(value)
@@ -138,10 +140,12 @@ function handleSeeMore() {
 }
 
 function handleLeagueFocus() {
+	clearInterval(interval)
 	previousLeague = this.value
 }
 
 function handleLeagueDropdown() {
+	jumpTo($blockTop.node())
 	clearInterval(interval)
 	const sliderState = d3.select('.noUi-origin')
 	sliderState.node().removeAttribute('disabled')
@@ -166,6 +170,14 @@ function handleLeagueDropdown() {
 	if (previousLeague == 'nwsl') {
 		decade = 2010
 	}
+	if (previousLeague == 'mls' || previousLeague == 'wnba' || previousLeague == 'nwsl') {
+		$slider.node().noUiSlider.updateOptions({
+			range: {
+				'min': 1950,
+				'max': 2010
+			}
+		});
+	}
 	previousLeague = this.value
 	slider.set(decade)
 	d3.selectAll('.name').remove()
@@ -175,6 +187,14 @@ function handleLeagueDropdown() {
 function scrollTo(element) {
 	window.scroll({
 		behavior: 'smooth',
+		left: 0,
+		top: element.offsetTop - 48
+	});
+}
+
+function jumpTo(element) {
+	window.scroll({
+		behavior: 'auto',
 		left: 0,
 		top: element.offsetTop - 48
 	});
