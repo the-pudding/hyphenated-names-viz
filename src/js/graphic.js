@@ -66,6 +66,7 @@ function heatMapData(data) {
 	nestedNames = d3.nest()
 		.key(d => d.decade).sortKeys(d3.ascending)
 		.key(d => d.league).sortKeys(function(a,b) { return leagues.indexOf(a) - leagues.indexOf(b); })
+		.sortValues(function(a,b) { return d3.ascending(a.lastName, b.lastName)})
 		.rollup(values => {
 			const allNames = values.length
 			const withHyphens = values.filter(d => d.hyphen == "true").length
