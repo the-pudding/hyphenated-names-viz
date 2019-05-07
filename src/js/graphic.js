@@ -27,6 +27,7 @@ const $leagueDropdown = d3.select('.leagueDropdown')
 const $leagueName = d3.select('.leagueName')
 const $nameSpan = d3.selectAll('.vignettes span')
 let slider = null;
+let previousLeague = null;
 
 function slidingNames() {
 	enterView({
@@ -126,10 +127,37 @@ function handleSlide(value) {
 	chartBlock.buildNameBlock(league, decade)
 }
 
+function handleLeagueFocus(){
+	previousLeague = this.value
+}
+
 function handleLeagueDropdown() {
 	clearInterval(interval)
+	const sliderState = d3.select('.noUi-origin')
+	sliderState.node().removeAttribute('disabled')
+	const sliderBase = d3.select('.noUi-base')
+	sliderBase.classed('dis-handle', false)
 	const league = this.value
-	const decade = d3.select('.noUi-tooltip').node().textContent
+	let decade = d3.select('.noUi-tooltip').node().textContent
+	if (league == 'wnba' || league == 'mls' && decade < 1990) {
+		decade = 1990
+		$slider.node().noUiSlider.updateOptions({
+			range: {
+				'min': decade,
+				'max': 2010
+			}
+		});
+	}
+	if (league == 'nwsl' && decade < 2010) {
+		decade = 2010
+		sliderState.node().setAttribute('disabled', true)
+		sliderBase.classed('dis-handle', true)
+	}
+	if (previousLeague == 'nwsl') {
+		decade = 2010
+	}
+	previousLeague = this.value
+	slider.set(decade)
 	d3.selectAll('.name').remove()
 	chartBlock.buildNameBlock(league, decade)
 }
@@ -164,7 +192,8 @@ function init() {
 		setupSlider()
 		slidingNames()
 		runInterval()
-		
+
+		$leagueDropdown.on('focus', handleLeagueFocus)
 		$leagueDropdown.on('change', handleLeagueDropdown)
 		$nameSpan.on('click', handleSpanClick)
 
