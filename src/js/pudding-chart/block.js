@@ -39,8 +39,11 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		// helper functions
 		function mouseOverName(data){
 			if (data.hyphen == 'true') {
-				$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
-				console.log(d3.event.pageY)
+				if (data.startDate == data.endDate) {
+					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}<br>${data.reason}`)
+				} else {
+					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
+				}
 				$tooltip.style('top', (d3.event.pageY) + 'px')
 				$tooltip.transition(300).style('left', '0px')
 				$hyphenNames = d3.selectAll('.name__true')

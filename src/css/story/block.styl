@@ -19,8 +19,12 @@
 	width 100%
 	margin 0 auto 0 auto
 	background-color $navy
-	min-height 80vh
 	position relative
+	min-height 80vh
+
+	&__names
+		max-height 150vh
+		overflow hidden
 
 	&__buttons
 		position absolute
@@ -43,6 +47,33 @@
 
 			&.is-active
 				color $yellow
+
+	&__more
+		width 100%
+		display flex
+		justify-content center
+		position absolute
+		bottom 0
+		left 0
+		padding 4.5rem 1rem 1.5rem 1rem
+		background-image linear-gradient(rgba($navy, 0), rgba($navy, 1), rgba($navy, 1));
+		+mq('bp-5')
+			display none
+
+		button
+			background-color transparent
+			color $navy-light
+			font-family $sans
+			font-weight 600
+			set-type-size('small', true)
+			text-transform uppercase
+			border 1px solid $navy-light
+			padding 0.5rem
+
+			&:hover
+				background-color $yellow
+				border 1px solid $yellow
+				color $navy
 
 	&__controls
 		position sticky

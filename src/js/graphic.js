@@ -20,12 +20,16 @@ let interval = null
 /* dom */
 const $heatMap = d3.select('.heatmap figure')
 const $histogram = d3.select('.histogram figure')
+const $blockNames = d3.select('.block__names')
 const $block = d3.select('.block figure')
 const $slider = d3.select('.block__slider')
 const $leagueButton = d3.selectAll('.block__buttons p')
 const $leagueDropdown = d3.select('.leagueDropdown')
 const $leagueName = d3.select('.leagueName')
 const $nameSpan = d3.selectAll('.vignettes span')
+const $blockMore = d3.select('.block__more')
+const $blockMoreButton = d3.select('.block__more button')
+let names = null
 let slider = null;
 let previousLeague = null;
 
@@ -127,7 +131,13 @@ function handleSlide(value) {
 	chartBlock.buildNameBlock(league, decade)
 }
 
-function handleLeagueFocus(){
+function handleSeeMore() {
+	clearInterval(interval)
+	$blockNames.style('max-height', 'none')
+	$blockMore.style('display', 'none')
+}
+
+function handleLeagueFocus() {
 	previousLeague = this.value
 }
 
@@ -196,6 +206,7 @@ function init() {
 		$leagueDropdown.on('focus', handleLeagueFocus)
 		$leagueDropdown.on('change', handleLeagueDropdown)
 		$nameSpan.on('click', handleSpanClick)
+		$blockMoreButton.on('click', handleSeeMore)
 
 		//histogramData(allNames)
 		//setupHistogram()
