@@ -40,9 +40,9 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		function mouseOverName(data){
 			if (data.hyphen == 'true') {
 				if (data.startDate == data.endDate) {
-					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}<br>${data.reason}`)
+					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}`)
 				} else {
-					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}<br>${data.reason}`)
+					$tooltip.html(`<span>${data.name}</span><br>${data.startDate}-${data.endDate}`)
 				}
 				$tooltip.transition().duration(300).style('opacity', 1)
 				$tooltip.style('top', (d3.event.pageY) + 'px')
