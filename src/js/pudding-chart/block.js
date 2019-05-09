@@ -32,6 +32,7 @@ d3.selection.prototype.puddingBlock = function init(options) {
 		const $totalCount = d3.select('.totalCount')
 		const $leagueName = d3.select('.leagueName')
 		const $decadeNum = d3.select('.decadeNum')
+		const $hyphensIn = d3.select('.hyphensIn')
 		let $hyphenNames = null
 		let $tooltip = null
 		const $percentCount = d3.select('.percentCount')
@@ -110,6 +111,12 @@ d3.selection.prototype.puddingBlock = function init(options) {
 				$totalCount.text(sumData.allNames)
 				$leagueName.text(blockData[0].key)
 				$decadeNum.text(`${decade}s`)
+
+				if (sumData.withHyphens == 1) {
+					$hyphensIn.text('hyphen in')
+				} else {
+					$hyphensIn.text('hyphens in')
+				}
 
 				$percentCount.text(`(${sumData.percentHyphen}%)`)
 			},
