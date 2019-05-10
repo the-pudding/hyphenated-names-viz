@@ -208,7 +208,14 @@ function handleSpanClick() {
 }
 
 function runInterval() {
-	interval = setInterval(autoplaySlider, 2000)
+	enterView({
+		selector: '#fig-heatmap',
+		enter: function(el) {
+			interval = setInterval(autoplaySlider, 2000)
+		},
+		offset: 0,
+		once: true
+	});
 }
 
 function resize() {}
