@@ -1,7 +1,6 @@
 /* global d3 */
 import loadData from './load-data'
 import './pudding-chart/heatmap'
-import './pudding-chart/histogram'
 import './pudding-chart/block'
 import noUiSlider from 'nouislider'
 import enterView from 'enter-view'
